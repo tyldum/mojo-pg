@@ -160,7 +160,6 @@ sub _watch {
   return if $self->{watching} || $self->{watching}++;
 
   my $dbh = $self->dbh;
-  $dbh->{private_mojo_async} = 1;
   unless ($self->{handle}) {
     open $self->{handle}, '<&', $dbh->{pg_socket} or die "Can't dup: $!";
   }
