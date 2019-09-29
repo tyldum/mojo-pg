@@ -99,7 +99,7 @@ sub _enqueue {
   if (my $parent = $self->parent) { return $parent->_enqueue($dbh) }
 
   my $queue = $self->{queue} ||= [];
-  push @$queue, $dbh if $dbh->{Active} && ($async ? $dbh->ping : 1);
+  push @$queue, $dbh if $dbh->{Active};
   shift @$queue while @$queue > $self->max_connections;
 }
 
